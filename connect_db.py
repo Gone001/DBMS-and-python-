@@ -1,3 +1,4 @@
+from calendar import prmonth
 import os 
 from dotenv import load_dotenv
 load_dotenv()
@@ -11,6 +12,15 @@ conn=mysql.connector.connect(
 
 print("Successfully Connected" if conn.is_connected() else "Connection failed")
 
+
+# this is the cursor object that will be used to execte the queries
+
+cursor =conn.cursor()
+cursor.execute("select FullName,City from customers")
+row=cursor.fetchall()
+print(row[:5])
+print("type",type(row).__name__, "|How many : ",len(row))
+cursor.close()
 conn.close()
 
 print("Connected" if conn.is_connected() else "Disconnected")
