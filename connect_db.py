@@ -1,4 +1,3 @@
-from calendar import prmonth
 import os 
 from dotenv import load_dotenv
 load_dotenv()
@@ -19,6 +18,10 @@ cursor =conn.cursor()
 cursor.execute("select FullName,City from customers")
 row=cursor.fetchall()
 print(row[:5])
+
+for name,city in cursor.fetchall():
+    print(name,"live in city",city)
+
 print("type",type(row).__name__, "|How many : ",len(row))
 cursor.close()
 conn.close()
